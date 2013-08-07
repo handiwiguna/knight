@@ -1,0 +1,16 @@
+# encoding: utf-8
+
+group :development do
+  gem 'rake', '~>10.1'
+  gem 'rspec', '~>2.13'
+end
+
+group :metrics do
+  gem 'flog',      '~>4.1'
+  gem 'rubocop', git: 'https://github.com/bbatsov/rubocop'
+  gem 'simplecov', '~>0.7'
+  gem 'mutant', '0.3.0.rc1'
+  gem 'coveralls', '~>0.6.7', require: false
+end
+
+eval_gemfile('Gemfile.local') if File.exists?('Gemfile.local')

@@ -1,6 +1,8 @@
 # Knight
 
-TODO: Write a gem description
+[![Build Status](https://travis-ci.org/handiwiguna/knight.png?branch=master)](https://travis-ci.org/handiwiguna/knight)
+[![Code Climate](https://codeclimate.com/github/handiwiguna/knight.png)](https://codeclimate.com/github/handiwiguna/knight)
+[![Coverage Status](https://coveralls.io/repos/handiwiguna/knight/badge.png?branch=master)](https://coveralls.io/r/handiwiguna/knight)
 
 ## Installation
 

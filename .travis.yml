@@ -1,0 +1,9 @@
+language: ruby
+script: "COVERAGE=true bundle exec rspec"
+rvm:
+  - 1.9.3
+  - 2.0.0
+notifications:
+  email:
+    - handi_wiguna@yahoo.com
+

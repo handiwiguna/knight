@@ -1,0 +1,17 @@
+AllCops:
+  Includes:
+    - 'Rakefile'
+    - 'Gemfile'
+    - 'Gemfile.dev'
+    - 'Gemfile.local'
+    - '../**/*.rake'
+  Excludes:
+    - '**/bin/*'
+
+# Document classes and non-namespace modules.
+Documentation:
+  Enabled: false
+
+# Limit lines to 80 characters.
+LineLength:
+  Enabled: false
