@@ -9,7 +9,7 @@ if ENV['COVERAGE'] == 'true'
     Coveralls::SimpleCov::Formatter
   ]
   SimpleCov.start do
-    add_filter "/spec/"
+    add_filter '/spec/'
   end
 end
 

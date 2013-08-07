@@ -6,6 +6,6 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
-  gem 'rontgen'
+  gem 'rontgen', git: 'https://github.com/handiwiguna/rontgen'
   eval_gemfile('Gemfile.dev') if File.exists?('Gemfile.dev')
 end
