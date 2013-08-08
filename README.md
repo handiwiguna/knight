@@ -30,13 +30,13 @@ class User
 end
 user = User.new('john')
 
-validator = Knight::Validator.new(Rule::Presence.new(:username))
+validator = Knight::Validator.new(Knight::Rule::Presence.new(:username))
 result = validator.run(user)
 result.valid? # => true
 
 
 class UserValidator
-  include Knight::InstanceMethod
+  include Knight::InstanceMethods
 
   validator.add(Knight::Rule::Presence.new(:username))
 
