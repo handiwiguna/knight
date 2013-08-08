@@ -42,7 +42,7 @@ module Knight
       #
       # @api private
       def matches?(value)
-        value.length >= minimum
+        value.length >= @minimum
       end
 
       # Return the rule as a hash
@@ -55,7 +55,7 @@ module Knight
       # @api public
       def to_hash
         super.merge({
-          minimum: minimum
+          minimum: @minimum
         }).freeze
       end
     end

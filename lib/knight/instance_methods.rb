@@ -73,8 +73,9 @@ module Knight
       #
       # @api public
       def validator(context = DEFAULT_CONTEXT)
-        validators.fetch(context) do |key|
-          validators[key] = Validator.new
+        @validators = @validators || {}
+        @validators.fetch(context) do |key|
+          @validators[key] = Validator.new
         end
       end
 
@@ -101,15 +102,6 @@ module Knight
       end
 
       private
-
-      # Return all validators
-      #
-      # @return [Hash]
-      #
-      # @api private
-      def validators
-        @validators = @validators || {}
-      end
 
       # Return rules for default context
       #

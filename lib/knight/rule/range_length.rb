@@ -42,7 +42,7 @@ module Knight
       #
       # @api private
       def matches?(value)
-        range.cover?(value.length)
+        @range.cover?(value.length)
       end
 
       # Return the rule as a hash
@@ -55,8 +55,8 @@ module Knight
       # @api public
       def to_hash
         super.merge({
-          minimum: range.min,
-          maximum: range.max
+          minimum: @range.min,
+          maximum: @range.max
         }).freeze
       end
     end

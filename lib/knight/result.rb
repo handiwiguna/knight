@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 module Knight
+  # Represent validation result
   class Result
     include Equalizer.new(:resource, :rules)
 
@@ -92,10 +93,10 @@ module Knight
     #
     # @api private
     def attribute_check(rule)
-      if resource.respond_to?(rule.attribute_name)
-        rule.error(resource)
+      if @resource.respond_to?(rule.attribute_name)
+        rule.error(@resource)
       else
-        Error.new(rule, resource) if rule.kind_of?(Rule::Presence)
+        Error.new(rule, @resource) if rule.kind_of?(Rule::Presence)
       end
     end
   end

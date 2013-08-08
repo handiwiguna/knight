@@ -41,7 +41,7 @@ module Knight
       #
       # @api private
       def matches?(value)
-        within.respond_to?(:cover?) ? within.cover?(value) : within.include?(value)
+        @within.respond_to?(:cover?) ? @within.cover?(value) : @within.include?(value)
       end
 
       # Return the rule as a hash
@@ -54,7 +54,7 @@ module Knight
       # @api public
       def to_hash
         super.merge({
-          within: within
+          within: @within
         }).freeze
       end
     end

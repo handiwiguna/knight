@@ -42,7 +42,7 @@ module Knight
     #
     # @api public
     def message
-      rule.message % rule.to_hash.merge(value: value)
+      @rule.message % @rule.to_hash.merge(value: value)
     end
 
     # Return error attribute name
@@ -51,7 +51,7 @@ module Knight
     #
     # @api private
     def attribute_name
-      rule.attribute_name
+      @rule.attribute_name
     end
 
     # Return error value
@@ -60,7 +60,7 @@ module Knight
     #
     # @api private
     def value
-      resource.public_send(attribute_name) if resource.respond_to?(attribute_name)
+      @resource.public_send(attribute_name) if @resource.respond_to?(attribute_name)
     end
   end
 end

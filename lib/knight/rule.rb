@@ -55,7 +55,7 @@ module Knight
     #
     # @api private
     def error(resource)
-      value = resource.public_send(attribute_name)
+      value = resource.public_send(@attribute_name)
       Error.new(self, resource) unless matches?(value)
     end
 
@@ -68,7 +68,7 @@ module Knight
     #
     # @api public
     def to_hash
-      { attribute: attribute_name }.freeze
+      { attribute: @attribute_name }.freeze
     end
   end
 end

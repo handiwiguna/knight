@@ -42,7 +42,7 @@ module Knight
       #
       # @api private
       def matches?(value)
-        value.length <= maximum
+        value.length <= @maximum
       end
 
       # Return the rule as a hash
@@ -55,7 +55,7 @@ module Knight
       # @api public
       def to_hash
         super.merge({
-          maximum: maximum
+          maximum: @maximum
         }).freeze
       end
     end

@@ -44,6 +44,7 @@ describe Result, '#errors' do
     context 'invalid object' do
       let(:resource) { Class.new }
       specify { expect(subject.size).to eql(1) }
+      specify { expect(subject.first.resource).to eql(resource) }
       specify { expect(subject.first.rule).to be_instance_of(Rule::Presence) }
     end
   end

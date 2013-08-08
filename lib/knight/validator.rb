@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 module Knight
+  # Represent validator class
   class Validator
 
     # Return validation rules
@@ -40,7 +41,7 @@ module Knight
     #
     # @api public
     def add(rule)
-      rules << rule if rule
+      @rules << rule if rule
     end
 
     # Run the validator
@@ -57,7 +58,7 @@ module Knight
     #
     # @api public
     def run(resource)
-      Result.new(resource, rules)
+      Result.new(resource, @rules)
     end
 
     # Run the validator on specific attribute
@@ -92,7 +93,7 @@ module Knight
     #
     # @api public
     def on(attribute)
-      rules.select { |rule| rule.attribute_name == attribute }.to_set
+      @rules.select { |rule| rule.attribute_name == attribute }.to_set
     end
   end
 end

@@ -42,7 +42,7 @@ module Knight
       #
       # @api private
       def matches?(value)
-        length == value.length
+        @length == value.length
       end
 
       # Return the rule as a hash
@@ -55,7 +55,7 @@ module Knight
       # @api public
       def to_hash
         super.merge({
-          length: length
+          length: @length
         }).freeze
       end
     end

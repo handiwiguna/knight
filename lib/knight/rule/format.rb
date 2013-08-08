@@ -41,7 +41,7 @@ module Knight
       #
       # @api private
       def matches?(value)
-        !!(regexp =~ value)
+        !!(@regexp =~ value)
       end
 
       # Return the rule as a hash
@@ -54,7 +54,7 @@ module Knight
       # @api public
       def to_hash
         super.merge({
-          format: regexp
+          format: @regexp
         }).freeze
       end
     end
