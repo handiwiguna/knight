@@ -28,7 +28,7 @@ module Knight
     # @api private
     def initialize(resource, rules)
       @resource = resource
-      @rules = rules
+      @rules    = rules
     end
 
     # Check the result valid or not
@@ -65,6 +65,22 @@ module Knight
         error = attribute_check(rule)
         errors << error if error
       end
+    end
+
+    # Return the errors for specific attribute
+    #
+    # @example
+    #   validator = Validator.new(Rule::Presence.new(:username))
+    #   user = User.new(username: 'john')
+    #
+    #   result = validator.run(resource)
+    #   result.on(:username)
+    #
+    # @return [Set(Error)]
+    #
+    # @api public
+    def on(attribute)
+      errors.select { |error| error.attribute_name == attribute }
     end
 
     private

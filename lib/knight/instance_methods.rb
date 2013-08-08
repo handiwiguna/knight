@@ -4,6 +4,7 @@ module Knight
 
   # Base functionality that added when included to a class
   module InstanceMethods
+    DEFAULT_CONTEXT = :default
 
     # Return the resource
     #
@@ -42,27 +43,64 @@ module Knight
     #
     #   class RegistrationValidator
     #     include Knight::InstanceMethods
-    #     validator.add(Knight::Rule::Presence.new(:username))
     #   end
     #
-    #   result = RegistrationValidator.new(user).result
+    #   result = RegistrationValidator.new(user).run
     #
     # @return [Result]
     #
     # @api public
-    def run(context = Validator::DEFAULT_CONTEXT)
-      self.class.validator.run(resource, context)
+    def run(context = DEFAULT_CONTEXT)
+      self.class.validator(context).run(resource)
     end
 
     module ClassMethods
 
       # Return the validator object
       #
+      # @example
+      #   class RegistrationValidator
+      #     include Knight::InstanceMethods
+      #
+      #     validator.add(Knight::Rule::Presence.new(:username))
+      #   end
+      #
       # @return [Validator]
       #
+      # @api public
+      def validator(context = DEFAULT_CONTEXT)
+        validators.fetch(context) do |key|
+          validators[key] = Validator.new
+        end
+      end
+
+      # Return the validator object
+      #
+      # @example
+      #   class RegistrationValidator
+      #     include Knight::InstanceMethods
+      #
+      #     context :register do |validator|
+      #       validator.add(Knight::Rule::Presence.new(:username))
+      #     end
+      #   end
+      #
+      # @return [undefined]
+      #
+      # @api public
+      def context(name)
+        yield validator(name)
+      end
+
+      private
+
+      # Return the validators contextual based
+      #
+      # @return [Hash]
+      #
       # @api private
-      def validator
-        @validator = @validator || Validator.new
+      def validators
+        @validators = @validators || {}
       end
     end
   end

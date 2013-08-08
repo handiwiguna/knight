@@ -29,7 +29,7 @@ module Knight
     #
     # @api private
     def initialize(rule, resource)
-      @rule = rule
+      @rule     = rule
       @resource = resource
     end
 
@@ -45,16 +45,22 @@ module Knight
       rule.message % rule.to_hash.merge(value: value)
     end
 
-    private
+    # Return error attribute name
+    #
+    # @return [String]
+    #
+    # @api private
+    def attribute_name
+      rule.attribute_name
+    end
 
-    # Return attribute value
+    # Return error value
     #
     # @return [Object]
     #
     # @api private
     def value
-      attribute = rule.attribute_name
-      resource.public_send(attribute) if resource.respond_to?(attribute)
+      resource.public_send(attribute_name) if resource.respond_to?(attribute_name)
     end
   end
 end

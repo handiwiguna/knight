@@ -20,7 +20,39 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+class User
+  attr_reader :username
+
+  def initialize(username)
+    @username = username
+  end
+end
+user = User.new('john')
+
+validator = Knight::Validator.new(Rule::Presence.new(:username))
+result = validator.run(user)
+result.valid? # => true
+
+
+class UserValidator
+  include Knight::InstanceMethod
+
+  validator.add(Knight::Rule::Presence.new(:username))
+
+  context :login do |validator|
+    validator.add(Knight::Rule::Presence.new(:username))
+    validator.add(Knight::Rule::Presence.new(:password))
+  end
+end
+validator = UserValidator.new(user)
+
+result = validator.run
+result.valid? # => true
+
+result = validator.run(:login)
+result.valid? # => false
+```
 
 ## Contributing
 

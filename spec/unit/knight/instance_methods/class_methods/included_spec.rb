@@ -3,10 +3,9 @@
 require 'spec_helper'
 
 describe InstanceMethods, '.included' do
-  subject { object }
+  subject { described_class }
 
-  let(:object) { described_class }
-  let(:klass)  { Class.new       }
+  let(:klass)  { Class.new }
 
   it 'delegates to the ancestor' do
     included_ancestor = false
@@ -20,5 +19,11 @@ describe InstanceMethods, '.included' do
   it 'respond_to validator' do
     klass.send(:include, subject)
     expect(klass).to respond_to(:validator)
+  end
+
+  it 'extends the klass' do
+    klass.singleton_class.should_not include(described_class::ClassMethods)
+    klass.send(:include, subject)
+    klass.singleton_class.should include(described_class::ClassMethods)
   end
 end
