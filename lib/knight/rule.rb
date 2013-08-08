@@ -5,7 +5,7 @@ module Knight
   # An abstract class of a rule
   class Rule
     include AbstractType
-    include Equalizer.new(:attribute_name, :options)
+    include Equalizer.new(:attribute_name)
 
     DEFAULT_MESSAGE  = ''.freeze
 

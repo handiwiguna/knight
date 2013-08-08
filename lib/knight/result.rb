@@ -80,7 +80,7 @@ module Knight
     #
     # @api public
     def on(attribute)
-      errors.select { |error| error.attribute_name == attribute }
+      errors.select { |error| error.attribute_name == attribute }.to_set
     end
 
     private

@@ -8,9 +8,11 @@ describe Validator, '#add' do
   let(:validator) { described_class.new(rule1) }
   let(:rule1) { Rule::ExactLength.new(:username, 10) }
   let(:rule2) { Rule::Presence.new(:username) }
+  let(:rule3) { Rule::Presence.new(:username, message: 'message') }
 
   before do
     validator.add(rule2)
+    validator.add(rule3)
     validator.add(nil)
   end
 

@@ -32,6 +32,8 @@ describe Result, '#errors' do
     let(:rules) do
       [Rule::Presence.new(:foo), Rule::ExactLength.new(:bar, 3)]
     end
+    let(:resource) { double('resource') }
+    it { should be_instance_of(Set) }
 
     context 'empty string' do
       let(:resource) { klass.new('') }

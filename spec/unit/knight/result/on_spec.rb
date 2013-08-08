@@ -26,6 +26,7 @@ describe Result, '#on' do
     ]
   end
 
+  it { should be_instance_of(Set) }
   specify { expect(subject.size).to eql(1) }
   specify { expect(result.errors.size).to eql(2) }
 end
