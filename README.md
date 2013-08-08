@@ -50,7 +50,7 @@ result.valid? # => true
 
 result = validator.run(:login)
 result.valid? # => false
-rresult.on(:password) # => #<Set: {#<Knight::Error rule=#<Knight::Rule::Presence attribute_name=:password>>}>esult.valid? # => true
+result.on(:password) # => #<Set: {#<Knight::Error rule=#<Knight::Rule::Presence attribute_name=:password>>}>
 
 user = User.new('', 'password')
 validator = UserValidator.new(user)
