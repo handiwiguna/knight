@@ -38,6 +38,8 @@ module Knight
 
     # Return the validation result
     #
+    # @param [Symbol] context
+    #
     # @example
     #   user = User.new
     #
@@ -58,6 +60,8 @@ module Knight
 
       # Return the validator object
       #
+      # @param [Symbol] context
+      #
       # @example
       #   class RegistrationValidator
       #     include Knight::InstanceMethods
@@ -76,6 +80,8 @@ module Knight
 
       # Return the validator object
       #
+      # @param [Symbol] name
+      #
       # @example
       #   class RegistrationValidator
       #     include Knight::InstanceMethods
@@ -89,18 +95,29 @@ module Knight
       #
       # @api public
       def context(name)
-        yield validator(name)
+        validator = validator(name)
+        validator.rules.merge(shared_rules) unless name == DEFAULT_CONTEXT
+        yield validator
       end
 
       private
 
-      # Return the validators contextual based
+      # Return all validators
       #
       # @return [Hash]
       #
       # @api private
       def validators
         @validators = @validators || {}
+      end
+
+      # Return rules for default context
+      #
+      # @return [Set(Rule)]
+      #
+      # @api private
+      def shared_rules
+        validator.rules
       end
     end
   end

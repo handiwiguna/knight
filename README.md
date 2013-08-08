@@ -22,18 +22,18 @@ Or install it yourself as:
 
 ```ruby
 class User
-  attr_reader :username
+  attr_reader :username, :password
 
-  def initialize(username)
+  def initialize(username, password)
     @username = username
+    @password = password
   end
 end
-user = User.new('john')
+user = User.new('john', '')
 
 validator = Knight::Validator.new(Knight::Rule::Presence.new(:username))
 result = validator.run(user)
 result.valid? # => true
-
 
 class UserValidator
   include Knight::InstanceMethods
@@ -41,17 +41,25 @@ class UserValidator
   validator.add(Knight::Rule::Presence.new(:username))
 
   context :login do |validator|
-    validator.add(Knight::Rule::Presence.new(:username))
     validator.add(Knight::Rule::Presence.new(:password))
   end
 end
 validator = UserValidator.new(user)
-
 result = validator.run
 result.valid? # => true
 
 result = validator.run(:login)
 result.valid? # => false
+
+user = User.new('', 'password')
+validator = UserValidator.new(user)
+result = validator.run(:login)
+result.valid? # => false
+
+user = User.new('john', 'password')
+validator = UserValidator.new(user)
+result = validator.run(:login)
+result.valid? # => true
 ```
 
 ## Contributing
